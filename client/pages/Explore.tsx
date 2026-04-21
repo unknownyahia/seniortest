@@ -1,18 +1,49 @@
+import { useState } from "react";
 import Navigation from "@/components/Navigation";
+import ExploreSearchBar from "@/components/explore/ExploreSearchBar";
+import FilterBar from "@/components/explore/FilterBar";
+import ResultsHeader from "@/components/explore/ResultsHeader";
+import ResultsList from "@/components/explore/ResultsList";
+import MapView from "@/components/explore/MapView";
 
 export default function Explore() {
+  const [viewMode, setViewMode] = useState<"list" | "map">("list");
+
   return (
     <div className="min-h-screen bg-slate-50">
       <Navigation activeTab="explore" />
+
       <main className="bg-white">
-        <section className="mx-auto max-w-7xl px-6 py-24 text-center">
-          <h1 className="text-4xl font-bold text-slate-900 mb-4">Explore</h1>
-          <p className="text-slate-600 text-lg mb-6">
-            Browse all spots in Qatar
-          </p>
-          <p className="text-slate-500 text-base">
-            Continue building out this page by asking me to implement the explore functionality.
-          </p>
+        {/* Search Section */}
+        <section className="border-b border-slate-200">
+          <div className="mx-auto max-w-7xl px-6 py-5">
+            <ExploreSearchBar />
+          </div>
+        </section>
+
+        {/* Filters Section */}
+        <section className="border-b border-slate-200">
+          <div className="mx-auto max-w-7xl px-6 py-4">
+            <FilterBar />
+          </div>
+        </section>
+
+        {/* Results Section */}
+        <section className="flex-1">
+          <div className="mx-auto max-w-7xl px-6 py-4">
+            <ResultsHeader onViewChange={setViewMode} />
+          </div>
+
+          {/* List/Map Layout */}
+          <div className="mx-auto max-w-7xl px-6 pb-8">
+            {viewMode === "list" ? (
+              <ResultsList />
+            ) : (
+              <div className="h-96">
+                <MapView />
+              </div>
+            )}
+          </div>
         </section>
       </main>
     </div>
