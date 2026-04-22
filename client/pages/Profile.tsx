@@ -1,18 +1,38 @@
 import Navigation from "@/components/Navigation";
+import ProfileHeader from "@/components/profile/ProfileHeader";
+import SavedSpots from "@/components/profile/SavedSpots";
+import RecentActivity from "@/components/profile/RecentActivity";
+import AccountSettings from "@/components/profile/AccountSettings";
 
 export default function Profile() {
   return (
     <div className="min-h-screen bg-slate-50">
       <Navigation activeTab="profile" />
-      <main className="bg-white">
-        <section className="mx-auto max-w-7xl px-6 py-24 text-center">
-          <h1 className="text-4xl font-bold text-slate-900 mb-4">Your Profile</h1>
-          <p className="text-slate-600 text-lg mb-6">
-            Manage your account and saved spots
-          </p>
-          <p className="text-slate-500 text-base">
-            Continue building out this page by asking me to implement the profile functionality.
-          </p>
+
+      <main className="bg-slate-50">
+        {/* Profile Header */}
+        <section className="border-b border-slate-200 bg-white">
+          <div className="mx-auto max-w-7xl px-6 py-8">
+            <ProfileHeader />
+          </div>
+        </section>
+
+        {/* Main Content */}
+        <section className="py-8">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="grid grid-cols-3 gap-8">
+              {/* Left: Saved Spots & Activity */}
+              <div className="col-span-2 space-y-8">
+                <SavedSpots />
+                <RecentActivity />
+              </div>
+
+              {/* Right: Settings */}
+              <div>
+                <AccountSettings />
+              </div>
+            </div>
+          </div>
         </section>
       </main>
     </div>
